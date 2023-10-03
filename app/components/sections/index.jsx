@@ -1,0 +1,9 @@
+export {default as AboutSection} from './home/AboutSection';
+export {default as ProductSection} from './home/ProductSection';
+export {default as PartnerSection} from './home/PartnerSection';
+export {default as MarqueeSection} from './home/MarqueeSection';
+export {default as CarouselSection} from './home/CarouselSection';
+export {default as QuoteSection} from './home/QuoteSection';
+export {default as VideoSection} from './home/VideoSection';
+export {default as TestimonySection} from './home/TestimonySection';
+export {default as BlogSection} from './home/BlogSection';

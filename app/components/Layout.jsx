@@ -10,6 +10,8 @@ import {
 } from '~/components/Search';
 
 export function Layout({cart, children = null, footer, header, isLoggedIn}) {
+  if (!header) return null;
+
   return (
     <>
       <CartAside cart={cart} />
@@ -19,7 +21,7 @@ export function Layout({cart, children = null, footer, header, isLoggedIn}) {
       <main>{children}</main>
       <Suspense>
         <Await resolve={footer}>
-          {(footer) => <Footer menu={footer.menu} />}
+          {(footer) => <Footer menu={footer.menu} header={header} />}
         </Await>
       </Suspense>
     </>
