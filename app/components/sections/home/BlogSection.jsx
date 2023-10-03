@@ -40,18 +40,20 @@ function BlogSection({data}) {
         arrows={false}
         autoPlaySpeed={6000}
         keyBoardControl={true}
-        customTransition="all .5"
-        transitionDuration={500}
         containerclassName="carousel-container"
         dotListclassName="custom-dot-list-style"
-        itemclassName="px-2"
       >
         {data.map(({node: blog}) => (
-          <Link key={blog.id} to={`/blogs/${blog.handle}`} state={blog}>
+          <Link
+            key={blog.id}
+            to={`/blogs/${blog.handle}`}
+            state={blog}
+            className="p-2 rounded-xl"
+          >
             {blog.image && (
               <Image
                 alt={blog.image.altText || blog.title}
-                className="object-cover w-full rounded-xl"
+                className="p-2 object-cover w-full rounded-xl"
                 data={blog.image}
                 aspectRatio="3/2"
                 sizes="(min-width: 768px) 50vw, 100vw"

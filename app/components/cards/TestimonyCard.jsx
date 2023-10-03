@@ -1,6 +1,6 @@
 function TestimonyCard({item}) {
   return (
-    <div className="rounded-lg bg-alternate p-10 h-full">
+    <div className="rounded-lg bg-alternate p-5 m-2 h-full">
       <div className="mb-10 flex flex-row items-center justify-between">
         {item.verified && (
           <span className="text-primary-400 bg-primary-200 rounded-lg p-2">

@@ -11,7 +11,7 @@ function VideoSection({data}) {
         open={modalOpen}
         setOpen={setModalOpen}
         component={
-          <div className="aspect-w-16 aspect-h-9 rounded-xl">
+          <div class="aspect-w-16 aspect-h-9 rounded-xl">
             <VideoPlayer play={modalOpen} file={data.videoLink} />
           </div>
         }

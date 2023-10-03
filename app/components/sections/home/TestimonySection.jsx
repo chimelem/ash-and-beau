@@ -62,11 +62,8 @@ function TestimonySection({data}) {
           customButtonGroup={<ButtonGroup />}
           arrows={false}
           keyBoardControl={true}
-          customTransition="all .5"
-          transitionDuration={500}
           containerclassName="carousel-container relative"
           dotListclassName="custom-dot-list-style"
-          itemclassName="px-2"
         >
           {data.reviews.map((item, index) => (
             <TestimonyCard key={index} item={item} />
