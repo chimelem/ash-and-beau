@@ -1,3 +1,24 @@
+@import url('https://fonts.googleapis.com/css2?family=Gothic+A1:wght@100;200;300;400;500;600;700;800;900&family=Libre+Caslon+Text:ital,wght@0,400;0,700;1,400&display=swap');
+
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+@layer base {
+  :root {
+    --brand: #ee7632;
+    --brand-100: #fdf1eb;
+    --brand-200: #f7bb99;
+    --brand-300: #f1915b;
+    --brand-400: #d66a2d;
+    --brand-500: #8f471e;
+    --brand-600: #30180a;
+    --secondary: #205310;
+    --secondary-100: #e9eee7;
+    --secondary-200: #a6ba9f;
+    --secondary-300: #638758;
+    --secondary-400: #163a0b;
+    --secondary-500: #0d2106;
+    --alternate: #fcf7f0;
+  }
+}

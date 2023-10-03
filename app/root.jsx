@@ -1,4 +1,4 @@
-import {useNonce} from '@shopify/hydrogen';
+import {useNonce, Seo} from '@shopify/hydrogen';
 import {defer} from '@shopify/remix-oxygen';
 import {
   Links,
@@ -17,7 +17,10 @@ import resetStyles from './styles/reset.css';
 import appStyles from './styles/app.css';
 import {Layout} from '~/components/Layout';
 import tailwindCss from './styles/tailwind.css';
+import multiCarouselCss from 'react-multi-carousel/lib/styles.css';
+import carouselCss from 'react-responsive-carousel/lib/styles/carousel.min.css';
 
+import {FOOTER_QUERY, HEADER_QUERY} from './lib/fragments';
 // This is important to avoid re-fetching root queries on sub-navigations
 export const shouldRevalidate = ({formMethod, currentUrl, nextUrl}) => {
   // revalidate when a mutation is performed e.g add to cart, login...
@@ -38,6 +41,8 @@ export function links() {
     {rel: 'stylesheet', href: tailwindCss},
     {rel: 'stylesheet', href: resetStyles},
     {rel: 'stylesheet', href: appStyles},
+    {rel: 'stylesheet', href: carouselCss},
+    {rel: 'stylesheet', href: multiCarouselCss},
     {
       rel: 'preconnect',
       href: 'https://cdn.shopify.com',
@@ -101,6 +106,7 @@ export default function App() {
       <head>
         <meta charSet="utf-8" />
         <meta name="viewport" content="width=device-width,initial-scale=1" />
+        <Seo />
         <Meta />
         <Links />
       </head>
@@ -190,73 +196,3 @@ async function validateCustomerAccessToken(session, customerAccessToken) {
 
   return {isLoggedIn, headers};
 }
-
-const MENU_FRAGMENT = `#graphql
-  fragment MenuItem on MenuItem {
-    id
-    resourceId
-    tags
-    title
-    type
-    url
-  }
-  fragment ChildMenuItem on MenuItem {
-    ...MenuItem
-  }
-  fragment ParentMenuItem on MenuItem {
-    ...MenuItem
-    items {
-      ...ChildMenuItem
-    }
-  }
-  fragment Menu on Menu {
-    id
-    items {
-      ...ParentMenuItem
-    }
-  }
-`;
-
-const HEADER_QUERY = `#graphql
-  fragment Shop on Shop {
-    id
-    name
-    description
-    primaryDomain {
-      url
-    }
-    brand {
-      logo {
-        image {
-          url
-        }
-      }
-    }
-  }
-  query Header(
-    $country: CountryCode
-    $headerMenuHandle: String!
-    $language: LanguageCode
-  ) @inContext(language: $language, country: $country) {
-    shop {
-      ...Shop
-    }
-    menu(handle: $headerMenuHandle) {
-      ...Menu
-    }
-  }
-  ${MENU_FRAGMENT}
-`;
-
-const FOOTER_QUERY = `#graphql
-  query Footer(
-    $country: CountryCode
-    $footerMenuHandle: String!
-    $language: LanguageCode
-  ) @inContext(language: $language, country: $country) {
-    menu(handle: $footerMenuHandle) {
-      ...Menu
-    }
-  }
-  ${MENU_FRAGMENT}
-`;
